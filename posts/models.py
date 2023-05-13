@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-
 class Post(models.Model):
     """
     Post model, related to 'owner', i.e. a User instance.
@@ -16,12 +15,23 @@ class Post(models.Model):
         ('toaster', 'Toaster'), ('valencia', 'Valencia'),
         ('walden', 'Walden'), ('xpro2', 'X-pro II')
     ]
+    condition_choices = [
+        ('or','Never Worn, with Original Tags'),('ne','Never Worn'),
+        ('vg','Very Good Condition'),('gd','Good Condition'),('fr','Fair Condition'),
+    ]
 
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     title = models.CharField(max_length=255)
     content = models.TextField(blank=True)
+    color = models.CharField(max_length=255, default='undefined')
+    dimensions = models.CharField(max_length=255, default='undefined')
+    cost = models.CharField(max_length=255, default='undefined')
+    address = models.CharField(max_length=510, default='undefined')
+    condition = models.CharField(
+        max_length=32, choices=condition_choices, default='normal'
+    )
     image = models.ImageField(
         upload_to='images/', default='../default_post_m09zvf', blank=True
     )

@@ -67,8 +67,14 @@ SECRET_KEY = 'django-insecure-t=-m))^ez@+d4(m-k^rqq&8whnsd@h4gcx-cbymxy3zazjb5qs
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['https://8000-zahraraha-drfrepo-fgqhxi88bs3.ws-us96.gitpod.io']
-
+CSRF_TRUSTED_ORIGINS = [
+    'https://8000-zahraraha-drfrepo-fgqhxi88bs3.ws-us97.gitpod.io',
+    'https://3000-zahraraha-reactmarket-ahovh75hfg3.ws-us97.gitpod.io']
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_WHITELIST = [
+    'https://8000-zahraraha-drfrepo-fgqhxi88bs3.ws-us97.gitpod.io',
+    'https://3000-zahraraha-reactmarket-ahovh75hfg3.ws-us97.gitpod.io'
+]
 
 # Application definition
 
@@ -90,8 +96,10 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'dj_rest_auth.registration',
+    'corsheaders',
 
     'profiles',
+    'categories',
     'posts',
     'comments',
     'likes',
@@ -107,6 +115,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'drf_api.urls'
