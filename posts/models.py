@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from categories.models import Category
 
 class Post(models.Model):
     """
@@ -25,6 +26,7 @@ class Post(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     title = models.CharField(max_length=255)
     content = models.TextField(blank=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, to_field='name', default='General')
     color = models.CharField(max_length=255, default='undefined')
     dimensions = models.CharField(max_length=255, default='undefined')
     cost = models.CharField(max_length=255, default='undefined')
